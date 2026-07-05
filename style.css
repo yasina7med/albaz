@@ -147,11 +147,11 @@ html[lang="ar"] .p-body .ar-name{font-family:'Anton',Impact,sans-serif;font-size
 html[lang="ar"] .p-tag{text-transform:none}
 
 /* ---------- image gallery ---------- */
-.gallery{position:relative;border-radius:8px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/10;background:var(--mist-2)}
+.gallery{position:relative;border-radius:8px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/10;background:#FFFFFF}
 .g-track{position:absolute;inset:0}
 .g-slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .6s ease;pointer-events:none}
 .g-slide.on{opacity:1;pointer-events:auto}
-.g-slide img{width:100%;height:100%;object-fit:cover}
+.g-slide img{width:100%;height:100%;object-fit:contain}
 /* label shows over the gradient only when the real image is missing */
 .g-ph-label{display:none;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#EAF2FF;font-weight:600;background:rgba(10,30,63,.35);padding:8px 16px;border-radius:40px;border:1px solid rgba(255,255,255,.35)}
 .g-slide.is-placeholder .g-ph-label{display:inline-block}
@@ -214,3 +214,16 @@ nav.open{display:flex}
 section{padding:64px 0}
 .brand-name{font-size:19px}
 }
+
+/* ---------- company logos ---------- */
+/* home card logo tile — white background, logo scales to fit (no crop) */
+.thumb.logo-slot{background:#FFFFFF;position:relative;padding:14px}
+.thumb.logo-slot .company-logo{width:100%;height:100%;object-fit:contain}
+.thumb.logo-slot .logo-mono{font-family:'Anton',Impact,sans-serif;font-size:44px;letter-spacing:.04em;color:var(--blue-deep);text-transform:uppercase}
+html[lang="ar"] .thumb.logo-slot .logo-mono{font-family:'Cairo',sans-serif;font-weight:800;font-size:34px;letter-spacing:0}
+
+/* project-section logo — banner on a white chip, logo scales to fit */
+.p-logo{display:flex;align-items:center;justify-content:center;width:100%;max-width:320px;height:120px;padding:14px;background:#FFFFFF;border:1px solid var(--line);border-radius:10px;margin-bottom:18px;overflow:hidden}
+.p-logo .company-logo{width:100%;height:100%;object-fit:contain}
+.p-logo .logo-mono{font-family:'Anton',Impact,sans-serif;font-size:40px;letter-spacing:.04em;color:var(--blue-deep);text-transform:uppercase}
+html[lang="ar"] .p-logo .logo-mono{font-family:'Cairo',sans-serif;font-weight:800;font-size:32px;letter-spacing:0}
