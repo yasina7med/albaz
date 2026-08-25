@@ -1,51 +1,250 @@
 /* ============================================================
    AL-BAZ GROUP — site behaviour
-   Sections: page nav · language switch · logos · image galleries
+   page nav · language · logos · photo galleries · product catalog
    ============================================================ */
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
-/* ============================================================
-   COMPANIES
-   ------------------------------------------------------------
-   One entry per company. `folder` is the assets sub-folder.
-   `name` / `nameAr` are used as the fallback logo monogram text.
-   ============================================================ */
+/* ---------------- companies (logo folders) ---------------- */
 const companies = {
-  foods:     { folder: 'foods',     name: 'Baz Foods',      nameAr: 'باز' },
+  foods:     { folder: 'foods',     name: 'Al-Baz Foods',   nameAr: 'باز' },
+  juice:     { folder: 'juice',     name: 'Al-Baz Juices',  nameAr: 'باز' },
   tobacco:   { folder: 'tobacco',   name: 'Al-Baz Tobacco', nameAr: 'الباز' },
   visions:   { folder: 'visions',   name: 'Modern Visions', nameAr: 'الرؤى' },
   tayeb:     { folder: 'tayeb',     name: 'Tayeb Al-Khair', nameAr: 'طيب الخير' },
   beethoven: { folder: 'beethoven', name: 'Beethoven',      nameAr: 'بيتهوفن' }
 };
 
+/* ---------------- product catalog (grouped by company) ---------------- */
+const F = 'assets/foods/web/', J = 'assets/juice/web/', T = 'assets/tobacco/web/';
+const ranges = [
+  { en:'Baz Chips', ar:'شبس باز', note:'Corn snack', noteAr:'سناك الذرة', items:[
+    { img:F+'1.jpg',  en:'Original',            ar:'الأصلي' },
+    { img:F+'2.jpg',  en:'Barbecue',            ar:'باربيكيو' },
+    { img:F+'10.jpg', en:'French Cheese',       ar:'جبنة فرنسية' },
+    { img:F+'16.jpg', en:'Sweet Chili Pepper',  ar:'فلفل حار حلو' },
+    { img:F+'20.jpg', en:'Yogurt & Herbs',      ar:'لبن وأعشاب' }
+  ]},
+  { en:'Boshar', ar:'بوشار', note:'Popcorn', noteAr:'بوشار', items:[
+    { img:F+'4.jpg', en:'Cheese',          ar:'جبنة' },
+    { img:F+'5.jpg', en:'Pizza',           ar:'بيتزا' },
+    { img:F+'6.jpg', en:'Salt & Vinegar',  ar:'ملح وخل' }
+  ]},
+  { en:'Tarbosh', ar:'طربوش', note:'Cones', noteAr:'طربوش', items:[
+    { img:F+'7.jpg', en:'Cheese',        ar:'بطعم الجبنة' },
+    { img:F+'8.jpg', en:'Sweet & Chili', ar:'الحار الحلو' }
+  ]},
+  { en:'Baz Max', ar:'باز ماكس', note:'Rippled potato chips', noteAr:'شرائح البطاطا المموجة', items:[
+    { img:F+'12.jpg', en:'Salt & Vinegar', ar:'ملح وخل' },
+    { img:F+'13.jpg', en:'Ketchup',        ar:'كاتشب' },
+    { img:F+'14.jpg', en:'Yogurt & Herbs', ar:'لبن وأعشاب' },
+    { img:F+'15.jpg', en:'Cheese',         ar:'جبنة' },
+    { img:F+'11.jpg', en:'Cheese',         ar:'جبنة', chip:'Family', chipAr:'عائلي' }
+  ]},
+  { en:'Baz Mix', ar:'مشكل باز', note:'Mixed snack', noteAr:'مشكل', items:[
+    { img:F+'18.jpg', en:'Cheese Mix',  ar:'مشكل جبنة' },
+    { img:F+'17.jpg', en:'Ketchup Mix', ar:'مشكل كاتشب' },
+    { img:F+'19.jpg', en:'BBQ Mix',     ar:'مشكل مشاوي' }
+  ]},
+  { en:'Crash & Peanut', ar:'كراش والفستق', note:'', noteAr:'', items:[
+    { img:F+'9.jpg', en:'Crash — French Cheese', ar:'كراش جبنة فرنسية' },
+    { img:F+'3.jpg', en:'Baz Peanut',            ar:'باز بالفستق' }
+  ]}
+];
+
+const juiceRanges = [
+  { en:'Baz Juice', ar:'عصائر باز', note:'250 ml', noteAr:'٢٥٠ مل', items:[
+    { img:J+'1.jpg', en:'Orange',      ar:'برتقال' },
+    { img:J+'2.jpg', en:'Pomegranate', ar:'رمان' },
+    { img:J+'3.jpg', en:'Grape',       ar:'عنب' },
+    { img:J+'4.jpg', en:'Peach',       ar:'خوخ' }
+  ]}
+];
+
+const tobaccoRanges = [
+  { en:'Molasses Tobacco', ar:'التبغ المعسل', note:'Premium hookah flavors', noteAr:'نكهات الأركيلة الفاخرة', items:[
+    { img:T+'1.jpg',  en:'Two Apple',        ar:'تفاحتين' },
+    { img:T+'2.jpg',  en:'Grape',            ar:'عنب' },
+    { img:T+'3.jpg',  en:'Strawberry',       ar:'فراولة' },
+    { img:T+'4.jpg',  en:'Blueberry',        ar:'توت أزرق' },
+    { img:T+'5.jpg',  en:'Lemon',            ar:'ليمون' },
+    { img:T+'6.jpg',  en:'Orange',           ar:'برتقال' },
+    { img:T+'7.jpg',  en:'Citrus',           ar:'حمضيات' },
+    { img:T+'8.jpg',  en:'Melon',            ar:'شمّام' },
+    { img:T+'9.jpg',  en:'Mint',             ar:'نعناع' },
+    { img:T+'10.jpg', en:'Lemon & Mint',     ar:'ليمون ونعناع' },
+    { img:T+'11.jpg', en:'Ice Lemon',        ar:'ليمون آيس' },
+    { img:T+'12.jpg', en:'Ice Lemon & Mint', ar:'ليمون ونعناع مثلج' },
+    { img:T+'13.jpg', en:'Gum',              ar:'علكة' },
+    { img:T+'14.jpg', en:'Gum & Mint',       ar:'علكة ونعناع' },
+    { img:T+'15.jpg', en:'Gum & Melon',      ar:'علكة وشمّام' },
+    { img:T+'16.jpg', en:'Vanilla',          ar:'فانيلا' },
+    { img:T+'17.jpg', en:'Bon Bon',          ar:'بون بون' },
+    { img:T+'18.jpg', en:'Lady Killer',      ar:'ليدي كيلر' },
+    { img:T+'19.jpg', en:'Dejavu',           ar:'ديجافو' },
+    { img:T+'20.jpg', en:'Havana',           ar:'هافانا' },
+    { img:T+'21.jpg', en:'Beethoven',        ar:'بيتهوفن' },
+    { img:T+'22.jpg', en:'English',          ar:'إنجليزي' }
+  ]}
+];
+
+/* products organized by the company that makes them */
+const catalog = [
+  { company:'Al-Baz Foods',   companyAr:'شركة باز للأطعمة الجاهزة', logo:'foods',
+    tag:'Chips · Snacks', tagAr:'شبس · وجبات خفيفة', groups:ranges },
+  { company:'Al-Baz Juices',  companyAr:'شركة باز للعصائر والمشروبات', logo:'juice',
+    tag:'Juices · 250 ml', tagAr:'عصائر · ٢٥٠ مل', groups:juiceRanges },
+  { company:'Al-Baz Tobacco', companyAr:'شركة الباز للتبوغ المعسلة', logo:'tobacco',
+    tag:'Premium hookah molasses', tagAr:'تبغ الأركيلة المعسل الفاخر', groups:tobaccoRanges }
+];
+
+function prodCard(p, click){
+  const chip = p.chip ? `<span class="chip" data-ar="${p.chipAr||p.chip}">${p.chip}</span>` : '';
+  const attrs = click ? ` role="button" tabindex="0" onclick="${click}" onkeypress="if(event.key==='Enter'||event.key===' '){${click};event.preventDefault()}"` : '';
+  return `<div class="prod"${attrs}>
+    <div class="shot"><img src="${p.img}" alt="${p.en}" loading="lazy"></div>
+    <div class="prod-body">
+      <div class="prod-name" data-ar="${p.ar}">${p.en}</div>
+      <div class="prod-ar" data-ar="${p.en}">${p.ar}</div>
+      ${chip}
+    </div>
+  </div>`;
+}
+
+function shotTile(src, alt, click){
+  return `<div class="cp-shot" role="button" tabindex="0" onclick="${click}" onkeypress="if(event.key==='Enter'){${click}}"><img src="${src}" alt="${alt||''}" loading="lazy"></div>`;
+}
+
+/* restaurant / venue photos for companies that show a photo gallery */
+const beethovenPhotos = [1,2,3,4,5,6,7,8,9].map(n => 'assets/beethoven/' + n + '.jpeg');
+
+function renderProducts(){
+  // home auto-scrolling marquee (duplicated for a seamless loop)
+  const track = document.getElementById('pc-track');
+  if (track){
+    const tiles = allProducts.map((p, i) => prodCard(p, `openGalleryAt(${i})`)).join('');
+    track.innerHTML = tiles + tiles;
+  }
+  // each product company: one big feature image + a full product gallery below
+  catalog.forEach(c => {
+    const list = c.groups.reduce((a, g) => a.concat(g.items), []);
+    const shots = document.getElementById('shots-' + c.logo);
+    if (shots) shots.innerHTML = shotTile(list[0].img, list[0].en, `openGalleryKey('${c.logo}',0)`);
+    const gal = document.getElementById('gallery-' + c.logo);
+    if (gal) gal.innerHTML = list.map((p, i) => prodCard(p, `openGalleryKey('${c.logo}',${i})`)).join('');
+  });
+  // Beethoven — restaurant photos
+  const bShots = document.getElementById('shots-beethoven');
+  if (bShots) bShots.innerHTML = shotTile(beethovenPhotos[0], 'Beethoven', "openPhotos(beethovenPhotos,'Beethoven Restaurant & Café','مطعم وكافيه بيتهوفن',0)");
+  const bGal = document.getElementById('gallery-beethoven');
+  if (bGal) bGal.innerHTML = beethovenPhotos
+    .map((s, i) => `<div class="prod photo" role="button" tabindex="0" onclick="openPhotos(beethovenPhotos,'Beethoven Restaurant &amp; Café','مطعم وكافيه بيتهوفن',${i})"><div class="shot"><img src="${s}" alt="Beethoven" loading="lazy"></div></div>`).join('');
+}
+
+/* ============================================================
+   PRODUCT GALLERY LIGHTBOX — automatic, pops up
+   ============================================================ */
+let lbList = [], lbIndex = 0, lbTimer = null, lbPlaying = true;
+const LB_MS = 3000;
+
+function openGallery(key){
+  lbList = key ? allProducts.filter(p => p.key === key) : allProducts.slice();
+  lbIndex = 0; lbRender(); lbOpen();
+}
+function openGalleryKey(key, i){
+  lbList = allProducts.filter(p => p.key === key);
+  lbIndex = ((i % lbList.length) + lbList.length) % lbList.length;
+  lbRender(); lbOpen();
+}
+function openGalleryAt(i){
+  lbList = allProducts.slice();
+  lbIndex = ((i % lbList.length) + lbList.length) % lbList.length;
+  lbRender(); lbOpen();
+}
+/* generic photo viewer (venues, restaurant, etc.) */
+function openPhotos(imgs, title, titleAr, i){
+  lbList = imgs.map(src => ({ img: src, company: title, companyAr: titleAr, en: '', ar: '' }));
+  lbIndex = i || 0; lbRender(); lbOpen();
+}
+function lbRender(){
+  const p = lbList[lbIndex]; if (!p) return;
+  const img = document.getElementById('lb-image');
+  img.src = p.img; img.alt = p.en;
+  document.getElementById('lb-company').textContent = (lang === 'ar') ? p.companyAr : p.company;
+  document.getElementById('lb-name').textContent    = (lang === 'ar') ? p.ar : p.en;
+  document.getElementById('lb-ar').textContent      = (lang === 'ar') ? p.en : p.ar;
+  document.getElementById('lb-count').textContent   = (lbIndex + 1) + ' / ' + lbList.length;
+}
+function lbOpen(){
+  const lb = document.getElementById('lightbox');
+  lb.classList.add('on'); lb.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  lbPlaying = true; lbStart();
+}
+function closeGallery(){
+  const lb = document.getElementById('lightbox');
+  lb.classList.remove('on'); lb.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = ''; lbStop();
+}
+function lbStep(d){ lbIndex = (lbIndex + d + lbList.length) % lbList.length; lbRender(); }
+function lbManual(d){ lbStep(d); if (lbPlaying) lbStart(); }   // reset timer on manual nav
+function lbStart(){ lbStop(); if (lbPlaying) lbTimer = setInterval(() => lbStep(1), LB_MS); lbPlayBtn(); }
+function lbStop(){ if (lbTimer){ clearInterval(lbTimer); lbTimer = null; } }
+function lbToggle(){ lbPlaying = !lbPlaying; lbPlaying ? lbStart() : (lbStop(), lbPlayBtn()); }
+function lbPlayBtn(){
+  const b = document.getElementById('lb-play');
+  b.dataset.playing = lbPlaying ? 'true' : 'false';
+  b.setAttribute('aria-label', lbPlaying ? 'Pause' : 'Play');
+}
+// pause while hovering the image/caption
+(function(){
+  const stage = document.getElementById('lb-stage');
+  if (stage){
+    stage.addEventListener('mouseenter', lbStop);
+    stage.addEventListener('mouseleave', () => { if (lbPlaying) lbStart(); });
+  }
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('lightbox').classList.contains('on')) return;
+    if (e.key === 'Escape') closeGallery();
+    else if (e.key === 'ArrowRight') lbManual(1);
+    else if (e.key === 'ArrowLeft') lbManual(-1);
+  });
+})();
+
+/* flat list of every product, tagged with its company */
+const allProducts = [];
+catalog.forEach(c => c.groups.forEach(g => g.items.forEach(it =>
+  allProducts.push(Object.assign({}, it, {
+    key: c.logo, company: c.company, companyAr: c.companyAr, range: g.en, rangeAr: g.ar
+  }))
+)));
+
 /* ---------------- page navigation ---------------- */
-const pages = ['home','about','projects','contact'];
+const pages = ['home','about','companies','contact'];
 
 function go(page){
+  if (!pages.includes(page)) page = 'home';
   pages.forEach(p => {
     document.getElementById('page-' + p).classList.toggle('on', p === page);
-    document.querySelector('nav a[data-page="' + p + '"]').classList.toggle('active', p === page);
+    const link = document.querySelector('nav a[data-page="' + p + '"]');
+    if (link) link.classList.toggle('active', p === page);
   });
   document.getElementById('nav').classList.remove('open');
   history.replaceState(null, '', '#' + page);
-  window.scrollTo({top: 0, behavior: 'instant'});
-  Object.keys(galleries).forEach(id => {
-    if (page === 'projects') startAuto(id); else stopAuto(id);
-  });
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  Object.keys(galleries).forEach(id => { page === 'companies' ? startAuto(id) : stopAuto(id); });
 }
 
-function goProject(id){
-  go('projects');
+function goCompany(id){
+  go('companies');
   requestAnimationFrame(() => {
-    const el = document.getElementById('proj-' + id);
-    if (el) el.scrollIntoView({behavior: 'smooth', block: 'start'});
+    const el = document.getElementById('comp-' + id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 }
 
 /* ---------------- language switch ---------------- */
 let lang = 'en';
-
 function toggleLang(){
   lang = (lang === 'en') ? 'ar' : 'en';
   document.querySelectorAll('[data-ar]').forEach(el => {
@@ -59,221 +258,169 @@ function toggleLang(){
   document.documentElement.lang = lang;
   document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
   document.getElementById('lang-btn').textContent = (lang === 'ar') ? 'English' : 'عربي';
-  // keep placeholder monogram text in the current language
   document.querySelectorAll('.logo-mono').forEach(m => {
     m.textContent = (lang === 'ar') ? (m.dataset.ar || '') : (m.dataset.en || '');
   });
+  if (document.getElementById('lightbox').classList.contains('on')) lbRender();
 }
 
-/* ============================================================
-   LOGOS
-   ------------------------------------------------------------
-   Each company slot tries to load, in order:
-       assets/<folder>/logo.png
-       assets/<folder>/logo.svg
-       assets/<folder>/logo.jpg
-   The first that loads is shown. If none exist, a clean monogram
-   (first letters of the name) is drawn instead — no broken images.
-   Just drop a "logo.png" into the folder and it appears everywhere.
-   ============================================================ */
+/* ---------------- company logos ---------------- */
 const LOGO_EXTS = ['png', 'svg', 'jpg', 'jpeg', 'webp'];
-
 function mountLogo(slot){
-  const key = slot.dataset.company;
-  const c = companies[key];
+  const c = companies[slot.dataset.company];
   if (!c) return;
   let attempt = 0;
-
   const img = document.createElement('img');
   img.className = 'company-logo';
   img.alt = c.name + ' logo';
   img.loading = 'lazy';
-
   img.onerror = () => {
     attempt++;
     if (attempt < LOGO_EXTS.length){
       img.src = 'assets/' + c.folder + '/logo.' + LOGO_EXTS[attempt];
     } else {
-      // no logo file found — draw a monogram fallback
       img.remove();
       const mono = document.createElement('span');
       mono.className = 'logo-mono';
-      mono.dataset.en = monogram(c.name);
+      mono.dataset.en = c.name.split(/\s+/).map(w => w[0]).join('').slice(0,2).toUpperCase();
       mono.dataset.ar = c.nameAr;
-      mono.textContent = (lang === 'ar') ? c.nameAr : monogram(c.name);
+      mono.style.cssText = 'font-family:Fraunces,serif;font-size:34px;font-weight:600;color:var(--gold-deep)';
+      mono.textContent = (lang === 'ar') ? c.nameAr : mono.dataset.en;
       slot.appendChild(mono);
     }
   };
-
   img.src = 'assets/' + c.folder + '/logo.' + LOGO_EXTS[0];
   slot.innerHTML = '';
   slot.appendChild(img);
 }
 
-function monogram(name){
-  return name.split(/\s+/).map(w => w[0]).join('').slice(0,3).toUpperCase();
-}
-
-const GRADS = {
-  // foods:     'linear-gradient(135deg,#4D9BFF,#1D5FD6)',
-  tobacco:   'linear-gradient(135deg,#1E3A8A,#0A1E3F)',
-  visions:   'linear-gradient(135deg,#5E86C0,#1E3A6F)',
-  tayeb:     'linear-gradient(135deg,#2458B8,#0B2A66)',
-  beethoven: 'linear-gradient(135deg,#3B7DD8,#12305F)'
-};
-
-const IMG_EXTS = ['png','jpg','jpeg','webp','gif'];
-const MAX_PROBE = 40;   // safety cap on how many numbers to check
-const AUTO_MS = 4000;
+/* ---------------- photo galleries (tobacco, beethoven) ---------------- */
+const IMG_EXTS = ['jpg','jpeg','png','webp'];
+const MAX_PROBE = 30;
+const AUTO_MS = 4500;
 const galleries = {};
 
-/* try to load one image; resolve with the working URL or null */
 function tryImage(base){
   return new Promise(resolve => {
     let i = 0;
     const attempt = () => {
       if (i >= IMG_EXTS.length){ resolve(null); return; }
-      const url = base + '.' + IMG_EXTS[i];
       const im = new Image();
-      im.onload  = () => resolve(url);
+      const url = base + '.' + IMG_EXTS[i];
+      im.onload = () => resolve(url);
       im.onerror = () => { i++; attempt(); };
       im.src = url;
     };
     attempt();
   });
 }
-
-/* probe 1,2,3... in a folder until a number is missing */
-async function probeFolder(key){
-  const folder = companies[key].folder;
+async function probeFolder(folder){
   const found = [];
   for (let n = 1; n <= MAX_PROBE; n++){
     const url = await tryImage('assets/' + folder + '/' + n);
-    if (!url) break;          // first gap = end of the sequence
-    found.push({ src: url, alt: 'Image ' + n, altAr: 'صورة ' + n });
+    if (!url) break;
+    found.push(url);
   }
   return found;
 }
-
-async function buildGallery(key){
+async function buildGallery(key, folder){
   const root = document.querySelector('.gallery[data-gallery="' + key + '"]');
   if (!root) return;
   const track = root.querySelector('.g-track');
   const dots  = root.querySelector('.g-dots');
-  const grad  = GRADS[key];
-  track.innerHTML = '';
-  dots.innerHTML  = '';
-
-  let images = await probeFolder(key);
-
-  if (images.length === 0){
-    images = [{ src: '', alt: 'Photos coming soon', altAr: 'الصور قريباً' }];
-  }
-
-  images.forEach((img, i) => {
+  const imgs = await probeFolder(folder);
+  if (imgs.length === 0) return;
+  track.innerHTML = ''; dots.innerHTML = '';
+  imgs.forEach((src, i) => {
     const slide = document.createElement('div');
     slide.className = 'g-slide' + (i === 0 ? ' on' : '');
-
-    if (img.src){
-      const el = document.createElement('img');
-      el.src = img.src;
-      el.alt = img.alt;
-      el.loading = 'lazy';
-      slide.appendChild(el);
-    } else {
-      // only the empty-folder placeholder gets the coloured gradient
-      slide.style.background = grad;
-      slide.classList.add('is-placeholder');
-    }
-
-    const label = document.createElement('span');
-    label.className = 'g-ph-label';
-    label.dataset.ar = img.altAr || img.alt;
-    label.dataset.en = img.alt;
-    label.textContent = (lang === 'ar') ? (img.altAr || img.alt) : img.alt;
-    slide.appendChild(label);
-
-    track.appendChild(slide);
-
+    const el = document.createElement('img');
+    el.src = src; el.alt = key + ' image ' + (i + 1); el.loading = 'lazy';
+    slide.appendChild(el); track.appendChild(slide);
     const dot = document.createElement('button');
     dot.className = 'g-dot' + (i === 0 ? ' on' : '');
     dot.setAttribute('aria-label', 'Go to image ' + (i + 1));
     dot.onclick = () => galGo(key, i);
     dots.appendChild(dot);
   });
-
-  const single = images.length < 2;
-  root.querySelectorAll('.g-arrow, .g-play, .g-dots').forEach(c => {
-    c.style.display = single ? 'none' : '';
-  });
-
-  galleries[key] = { index: 0, count: images.length, timer: null, playing: !single, root };
+  const single = imgs.length < 2;
+  root.querySelectorAll('.g-arrow, .g-dots').forEach(c => c.style.display = single ? 'none' : '');
+  galleries[key] = { index: 0, count: imgs.length, timer: null, playing: !single, root };
 }
-
 function render(id){
   const g = galleries[id];
   g.root.querySelectorAll('.g-slide').forEach((s, i) => s.classList.toggle('on', i === g.index));
   g.root.querySelectorAll('.g-dot').forEach((d, i) => d.classList.toggle('on', i === g.index));
 }
-
 function galGo(id, i){
-  const g = galleries[id];
-  if (!g) return;
-  g.index = (i + g.count) % g.count;
-  render(id);
+  const g = galleries[id]; if (!g) return;
+  g.index = (i + g.count) % g.count; render(id);
   if (g.playing) startAuto(id);
 }
 function galNext(id){ galGo(id, galleries[id].index + 1); }
 function galPrev(id){ galGo(id, galleries[id].index - 1); }
-
 function startAuto(id){
-  const g = galleries[id];
-  if (!g || !g.playing || g.count < 2) return;
+  const g = galleries[id]; if (!g || !g.playing || g.count < 2) return;
   stopAuto(id);
   g.timer = setInterval(() => { g.index = (g.index + 1) % g.count; render(id); }, AUTO_MS);
 }
-function stopAuto(id){
-  const g = galleries[id];
-  if (g && g.timer){ clearInterval(g.timer); g.timer = null; }
-}
-
-function galToggle(id){
-  const g = galleries[id];
-  if (!g) return;
-  g.playing = !g.playing;
-  const btn = g.root.querySelector('.g-play');
-  btn.dataset.playing = g.playing ? 'true' : 'false';
-  btn.setAttribute('aria-label', g.playing ? 'Pause slideshow' : 'Play slideshow');
-  if (g.playing) startAuto(id); else stopAuto(id);
-}
-
+function stopAuto(id){ const g = galleries[id]; if (g && g.timer){ clearInterval(g.timer); g.timer = null; } }
 function wireHover(id){
-  const g = galleries[id];
-  if (!g) return;
+  const g = galleries[id]; if (!g) return;
   g.root.addEventListener('mouseenter', () => stopAuto(id));
   g.root.addEventListener('mouseleave', () => { if (g.playing) startAuto(id); });
 }
 
-/* ---------------- startup ---------------- */
-// mount logos everywhere they appear
-document.querySelectorAll('.logo-slot[data-company]').forEach(mountLogo);
+/* ---------------- company tree scroll-reveal ---------------- */
+function initTree(){
+  const branches = document.querySelectorAll('#company-tree .branch');
+  if (!branches.length) return;
+  if (!('IntersectionObserver' in window)){ branches.forEach(b => b.classList.add('in')); return; }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.3, rootMargin: '0px 0px -8% 0px' });
+  branches.forEach(b => io.observe(b));
+}
 
-// build galleries (async), then wire hover-pause
-(async () => {
-  for (const key of Object.keys(companies)){
-    await buildGallery(key);
-    wireHover(key);
+/* ---------------- header shrink / hide on scroll ---------------- */
+(function(){
+  const header = document.querySelector('header');
+  let lastY = window.scrollY, ticking = false;
+  function update(){
+    const y = window.scrollY;
+    const navOpen = document.getElementById('nav').classList.contains('open');
+    header.classList.toggle('scrolled', y > 14);
+    if (navOpen || y < 260){
+      header.classList.remove('hidden');           // always visible near top / with menu open
+    } else if (y > lastY + 6){
+      header.classList.add('hidden');              // scrolling down → tuck away
+    } else if (y < lastY - 6){
+      header.classList.remove('hidden');           // scrolling up → reveal
+    }
+    lastY = y; ticking = false;
   }
-  const start = location.hash.replace('#','');
-  go(pages.includes(start) ? start : 'home');
+  window.addEventListener('scroll', () => {
+    if (!ticking){ requestAnimationFrame(update); ticking = true; }
+  }, { passive: true });
+  update();
 })();
+
+/* ---------------- startup ---------------- */
+renderProducts();
+document.querySelectorAll('.logo-slot[data-company]').forEach(mountLogo);
+initTree();
+
+const start = location.hash.replace('#','');
+go(pages.includes(start) ? start : 'home');
 
 /* contact form: graceful demo when the placeholder email is still set */
 document.getElementById('contact-form').addEventListener('submit', function(e){
-  if (this.action.includes('REPLACE_WITH_YOUR_EMAIL')) {
+  if (this.action.includes('REPLACE_WITH_YOUR_EMAIL')){
     e.preventDefault();
     const m = document.getElementById('sent-msg');
     m.style.display = 'block';
-    m.scrollIntoView({behavior:'smooth', block:'center'});
+    m.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 });
