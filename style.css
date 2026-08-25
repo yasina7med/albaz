@@ -202,6 +202,10 @@ html[lang="ar"] .branch-card .more{letter-spacing:0}
   .branch-card,.branch::after{opacity:1!important;transform:none!important}
   .branch.in::after{transform:translateX(-50%)!important}
 }
+/* Arabic: keep the tree geometry identical to English (don't flip the
+   branches/connectors) — only the text inside the cards switches to Arabic */
+html[dir="rtl"] #company-tree{direction:ltr}
+html[dir="rtl"] #company-tree .branch-card{direction:rtl}
 
 /* ---------- company profile (companies page, navy) ---------- */
 .cprofile{padding:62px 0;border-bottom:1px solid var(--navy-700)}
