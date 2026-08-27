@@ -8,7 +8,6 @@ document.getElementById('year').textContent = new Date().getFullYear();
 /* ---------------- companies (logo folders) ---------------- */
 const companies = {
   foods:     { folder: 'foods',     name: 'Al-Baz Foods',   nameAr: 'باز' },
-  juice:     { folder: 'juice',     name: 'Al-Baz Juices',  nameAr: 'باز' },
   tobacco:   { folder: 'tobacco',   name: 'Al-Baz Tobacco', nameAr: 'الباز' },
   visions:   { folder: 'visions',   name: 'Modern Visions', nameAr: 'الرؤى' },
   tayeb:     { folder: 'tayeb',     name: 'Tayeb Al-Khair', nameAr: 'طيب الخير' },
@@ -23,7 +22,7 @@ const ranges = [
     { img:F+'2.jpg',  en:'Barbecue',            ar:'باربيكيو' },
     { img:F+'10.jpg', en:'French Cheese',       ar:'جبنة فرنسية' },
     { img:F+'16.jpg', en:'Sweet Chili Pepper',  ar:'فلفل حار حلو' },
-    { img:F+'20.jpg', en:'Yogurt & Herbs',      ar:'لبن وأعشاب' }
+    { img:F+'20.png', en:'Lemon',      ar:'ليمون' }
   ]},
   { en:'Boshar', ar:'بوشار', note:'Popcorn', noteAr:'بوشار', items:[
     { img:F+'4.jpg', en:'Cheese',          ar:'جبنة' },
@@ -47,12 +46,11 @@ const ranges = [
     { img:F+'19.jpg', en:'BBQ Mix',     ar:'مشكل مشاوي' }
   ]},
   { en:'Crash & Peanut', ar:'كراش والفستق', note:'', noteAr:'', items:[
-    { img:F+'9.jpg', en:'Crash — French Cheese', ar:'كراش جبنة فرنسية' },
-    { img:F+'3.jpg', en:'Baz Peanut',            ar:'باز بالفستق' }
-  ]}
-];
-
-const juiceRanges = [
+    { img:F+'9.png', en:'Crash — French Cheese', ar:'كراش جبنة فرنسية' },
+    { img:F+'3.jpg', en:'Baz Peanut',            ar:'باز بالفستق' },
+    { img:F+'21.png', en:'Cheese puff',            ar:"بافز الجبن" },
+    { img:F+'22.png', en:'Ketchup puff',            ar:"بافز الكاتشب" },
+  ]},
   { en:'Baz Juice', ar:'عصائر باز', note:'250 ml', noteAr:'٢٥٠ مل', items:[
     { img:J+'1.jpg', en:'Orange',      ar:'برتقال' },
     { img:J+'2.jpg', en:'Pomegranate', ar:'رمان' },
@@ -91,9 +89,7 @@ const tobaccoRanges = [
 /* products organized by the company that makes them */
 const catalog = [
   { company:'Al-Baz Foods',   companyAr:'شركة باز للأطعمة الجاهزة', logo:'foods',
-    tag:'Chips · Snacks', tagAr:'شبس · وجبات خفيفة', groups:ranges },
-  { company:'Al-Baz Juices',  companyAr:'شركة باز للعصائر والمشروبات', logo:'juice',
-    tag:'Juices · 250 ml', tagAr:'عصائر · ٢٥٠ مل', groups:juiceRanges },
+    tag:'Chips · Snacks · Juices', tagAr:'شبس · وجبات خفيفة · عصائر', groups:ranges },
   { company:'Al-Baz Tobacco', companyAr:'شركة الباز للتبوغ المعسلة', logo:'tobacco',
     tag:'Premium hookah molasses', tagAr:'تبغ الأركيلة المعسل الفاخر', groups:tobaccoRanges }
 ];

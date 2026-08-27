@@ -202,9 +202,10 @@ html[lang="ar"] .branch-card .more{letter-spacing:0}
   .branch-card,.branch::after{opacity:1!important;transform:none!important}
   .branch.in::after{transform:translateX(-50%)!important}
 }
-/* Arabic: keep the tree geometry identical to English (don't flip the
-   branches/connectors) — only the text inside the cards switches to Arabic */
-html[dir="rtl"] #company-tree{direction:ltr}
+/* Arabic: on desktop keep the alternating tree geometry identical to English
+   (don't flip the branches/connectors) — only the text switches to Arabic.
+   On mobile the single-trunk layout mirrors naturally (trunk on the right). */
+@media (min-width:921px){ html[dir="rtl"] #company-tree{direction:ltr} }
 html[dir="rtl"] #company-tree .branch-card{direction:rtl}
 
 /* ---------- company profile (companies page, navy) ---------- */
@@ -426,17 +427,19 @@ footer{background:var(--navy-900);color:#93A6C4;padding:60px 0 34px}
   .hero{min-height:auto}
   .hero-in{padding:90px 0 70px}
   section{padding:70px 0}
-  /* company tree → single left trunk */
-  .tree::before{left:18px}
+  /* company tree → single trunk on the inline-start side (mirrors in Arabic) */
+  .tree::before{inset-inline-start:18px;left:auto}
   .branch{display:block;margin-bottom:26px}
   .branch.left,.branch.right{justify-content:flex-start}
-  .branch::after{left:18px;top:30px}
-  .branch-card{width:auto;margin-inline-start:46px;text-align:start!important}
+  .branch::after{inset-inline-start:11px;left:auto;top:30px;transform:scale(.4)}
+  .branch.in::after{transform:scale(1)}
+  .branch-card{width:auto;margin-inline-start:46px;text-align:start}
   .branch.left .branch-card,.branch.right .branch-card{transform:translateX(26px)}
+  html[dir="rtl"] .branch.left .branch-card,html[dir="rtl"] .branch.right .branch-card{transform:translateX(-26px)}
   .branch.in .branch-card{transform:none}
   .branch-card::before{top:36px;width:28px}
-  .branch.left .branch-card::before,.branch.right .branch-card::before{left:-28px;right:auto}
-  .branch.left .branch-logo{justify-content:flex-start}
+  .branch.left .branch-card::before,.branch.right .branch-card::before{inset-inline-start:-28px;left:auto;right:auto}
+  .branch.left .branch-logo,.branch.right .branch-logo{justify-content:center}
   .comp-products-head{gap:14px}
   .cph-logo{width:60px;height:60px}
 }
