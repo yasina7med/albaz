@@ -450,3 +450,50 @@ footer{background:var(--navy-900);color:#93A6C4;padding:60px 0 34px}
   .prod-grid{grid-template-columns:1fr 1fr;gap:14px}
   .brand-name{font-size:18px}
 }
+
+/* ============================================================
+   Company galleries grouped by range · wide (packet) cards ·
+   Beethoven second branch · lightbox fits any image shape
+   ============================================================ */
+.cprofile .range{margin-bottom:46px}
+.cprofile .range:last-child{margin-bottom:0}
+.cprofile .range-head{border-bottom-color:var(--navy-700);padding-bottom:12px;margin-bottom:22px;align-items:center}
+.cprofile .range-head h3{color:#fff;font-size:clamp(19px,2.2vw,24px)}
+.cprofile .range-head .r-note{color:#93A6C4}
+.range-head .r-count{margin-inline-start:auto;min-width:30px;height:26px;padding:0 9px;border-radius:13px;display:inline-flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;color:var(--navy-900);background:var(--gold)}
+
+/* long molasses cartons: landscape cards */
+.prod.wide .shot{aspect-ratio:25/16}
+.prod-grid.wide{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+
+/* home marquee: one row height for portrait and landscape tiles */
+.pc-track .prod .shot{aspect-ratio:auto;height:262px}
+.pc-track .prod.wide{width:410px}
+
+/* lightbox: size to the image so landscape cartons and photos aren't cropped */
+.lb-img{height:auto;aspect-ratio:auto;max-width:86vw}
+.lb-img img{width:auto;height:auto;max-width:86vw;max-height:min(62vh,620px);object-fit:contain}
+
+/* Modern Visions slogan */
+.cp-slogan{font-family:var(--display);font-style:italic;color:var(--gold-2)!important;font-size:17px!important;margin:4px 0 22px!important}
+html[lang="ar"] .cp-slogan{font-style:normal;font-weight:700}
+
+/* Beethoven — branch addresses + second-branch section */
+.locations{margin-top:6px;padding:16px 20px;border:1px solid var(--navy-700);border-inline-start:3px solid var(--gold);border-radius:6px;background:var(--navy-800)}
+.locations > strong{display:block;color:var(--gold-2);font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
+html[lang="ar"] .locations > strong{letter-spacing:0}
+.locations p{margin:0 0 4px!important;font-size:14.5px!important}
+.locations p strong{color:#fff}
+.branch-sec{margin-top:54px;padding-top:44px;border-top:1px dashed var(--gold-line)}
+.bs-head{margin-bottom:28px}
+.bs-head h4{font-family:var(--display);font-weight:600;font-size:clamp(22px,2.6vw,30px);color:#fff;margin:12px 0 4px}
+html[lang="ar"] .bs-head h4{font-weight:800}
+.bs-addr{color:var(--gold-2);font-size:14.5px}
+
+@media (max-width:560px){
+  .lb-img img{max-height:52vh}
+  .prod-grid.wide{grid-template-columns:1fr}
+  .pc-track .prod .shot{height:220px}
+  .pc-track .prod.wide{width:344px}
+}

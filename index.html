@@ -129,7 +129,7 @@
           <a class="branch-card" href="#companies" onclick="goCompany('beethoven');return false;">
             <div class="branch-logo logo-slot" data-company="beethoven"></div>
             <h3 data-ar="مطعم وكافيه بيتهوفن">Beethoven Restaurant &amp; Café</h3>
-            <div class="sub" data-ar="ضيافة · بغداد">Hospitality · Baghdad</div>
+            <div class="sub" data-ar="ضيافة · الكرادة والمنصور">Hospitality · Karrada &amp; Mansour</div>
             <p data-ar="من أرقى وجهات الطعام في قلب بغداد، بخدمةٍ وأجواءٍ مميزة.">One of Baghdad's finest dining destinations — service and atmosphere.</p>
             <span class="more" data-ar="عرض الشركة ←">View company →</span>
           </a>
@@ -250,7 +250,7 @@
         </div>
         <div class="cp-gallery-wrap">
           <div class="cp-gallery-title"><span class="eyebrow" data-ar="معرض المنتجات">Product gallery</span></div>
-          <div class="prod-grid" id="gallery-foods"></div>
+          <div id="gallery-foods"></div>
         </div>
       </article>
 
@@ -279,7 +279,7 @@
         </div>
         <div class="cp-gallery-wrap">
           <div class="cp-gallery-title"><span class="eyebrow" data-ar="معرض المنتجات">Product gallery</span></div>
-          <div class="prod-grid" id="gallery-tobacco"></div>
+          <div id="gallery-tobacco"></div>
         </div>
       </article>
 
@@ -302,15 +302,14 @@
               <li data-ar="نخدم المحلات والمشاريع والعملاء">Serving shops, projects &amp; customers</li>
               <li data-ar="نواكب أحدث المنتجات والاتجاهات في القطاع">Always up to date with the latest products &amp; trends</li>
             </ul>
+            <p class="cp-slogan" data-ar="الرؤى الحديثة… كل ما يخص عالم الأركيلة، في مكانٍ واحد">Modern Visions — everything for the world of hookah, in one place.</p>
+            <a class="btn btn-primary" href="#" onclick="openGallery('visions');return false;" data-ar="عرض كل المنتجات">View all products</a>
           </div>
-          <div class="feat-panel">
-            <div class="quote-mark">&rdquo;</div>
-            <div class="fp-list">
-              <div class="fp-item"><b data-ar="من A إلى Z">A to Z</b><span data-ar="كل ما يخص عالم الأركيلة في مكانٍ واحد">Everything for the world of hookah, in one place</span></div>
-              <div class="fp-item"><b data-ar="جودة">Quality</b><span data-ar="جودة وتنوّع وتصاميم عصرية">Quality, variety and modern designs</span></div>
-              <div class="fp-item"><b data-ar="للأعمال">For business</b><span data-ar="نخدم المحلات والمشاريع والعملاء في كل العراق">Serving shops, projects and customers</span></div>
-            </div>
-          </div>
+          <div class="cp-shots" id="shots-visions"></div>
+        </div>
+        <div class="cp-gallery-wrap">
+          <div class="cp-gallery-title"><span class="eyebrow" data-ar="معرض المنتجات">Product gallery</span></div>
+          <div id="gallery-visions"></div>
         </div>
       </article>
 
@@ -387,9 +386,36 @@
 
   <div class="cp-gallery-wrap">
     <div class="cp-gallery-title">
-      <span class="eyebrow" data-ar="معرض الصور">Photo gallery</span>
+      <span class="eyebrow" data-ar="فرع الكرادة · معرض الصور">Karrada Branch · Photo gallery</span>
     </div>
     <div class="prod-grid photos" id="gallery-beethoven"></div>
+  </div>
+
+  <!-- BEETHOVEN — SECOND BRANCH (MANSOUR) -->
+  <div class="branch-sec" id="beethoven-mansour">
+    <div class="bs-head">
+      <span class="p-tag gold" data-ar="الفرع الجديد">New Branch</span>
+      <h4 data-ar="بيتهوفن — فرع المنصور">Beethoven — Mansour Branch</h4>
+      <div class="bs-addr" data-ar="المنصور، قرب ساحة النسور · بغداد">Mansour, near Nisour Square · Baghdad</div>
+    </div>
+    <div class="cp-main">
+      <div class="cp-desc">
+        <p data-ar="الفرع الثاني لبيتهوفن يحمل المطبخ الراقي نفسه والقهوة المختصة والأجواء الأنيقة إلى منطقة المنصور، في مكانٍ عصري بجلساتٍ داخلية وحديقةٍ خارجية وإطلالةٍ على برج بغداد.">Beethoven's second branch brings the same refined kitchen, specialty coffee and elegant atmosphere to Mansour — a modern venue with indoor seating, a garden terrace and a view of the Baghdad Tower.</p>
+        <ul class="caps">
+          <li data-ar="جلساتٌ داخلية وحديقةٌ خارجية">Indoor seating and a garden terrace</li>
+          <li data-ar="بوفيه مفتوح وقائمةٌ كاملة">Open buffet and a full menu</li>
+          <li data-ar="إطلالةٌ على برج بغداد">A view of the Baghdad Tower</li>
+          <li data-ar="مثاليٌ للعائلات والتجمّعات والمناسبات">Ideal for families, gatherings and events</li>
+        </ul>
+      </div>
+      <div class="cp-shots" id="shots-beethoven2"></div>
+    </div>
+    <div class="cp-gallery-wrap">
+      <div class="cp-gallery-title">
+        <span class="eyebrow" data-ar="فرع المنصور · معرض الصور">Mansour Branch · Photo gallery</span>
+      </div>
+      <div class="prod-grid photos" id="gallery-beethoven2"></div>
+    </div>
   </div>
 </article>
 

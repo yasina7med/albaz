@@ -38,29 +38,33 @@ const ranges = [
     { img:F+'13.jpg', en:'Ketchup',        ar:'كاتشب' },
     { img:F+'14.jpg', en:'Yogurt & Herbs', ar:'لبن وأعشاب' },
     { img:F+'15.jpg', en:'Cheese',         ar:'جبنة' },
-    { img:F+'11.jpg', en:'Cheese',         ar:'جبنة', chip:'Family', chipAr:'عائلي' }
+    { img:F+'11.jpg', en:'Cheese',         ar:'جبنة', chip:'Family', chipAr:'عائلي' },
+    { img:F+'3.jpg',  en:'Peanut Snack',   ar:'بطعم الفستق' }
   ]},
   { en:'Baz Mix', ar:'مشكل باز', note:'Mixed snack', noteAr:'مشكل', items:[
     { img:F+'18.jpg', en:'Cheese Mix',  ar:'مشكل جبنة' },
     { img:F+'17.jpg', en:'Ketchup Mix', ar:'مشكل كاتشب' },
-    { img:F+'19.jpg', en:'BBQ Mix',     ar:'مشكل مشاوي' }
+    { img:F+'19.jpg', en:'BBQ Mix',     ar:'مشكل مشاوي' },
+    { img:F+'23.jpg', en:'Cheese Chips Mix',  ar:'مشكل شيبس جبنة', chip:'New', chipAr:'جديد' },
+    { img:F+'24.jpg', en:'Ketchup Chips Mix', ar:'مشكل شيبس كاتشب', chip:'New', chipAr:'جديد' }
   ]},
-  { en:'Crash & Peanut', ar:'كراش والفستق', note:'', noteAr:'', items:[
-    { img:F+'9.png', en:'Crash — French Cheese', ar:'كراش جبنة فرنسية' },
-    { img:F+'3.jpg', en:'Baz Peanut',            ar:'باز بالفستق' },
-    { img:F+'21.png', en:'Cheese puff',            ar:"بافز الجبن" },
-    { img:F+'22.png', en:'Ketchup puff',            ar:"بافز الكاتشب" },
+  { en:'Puffs', ar:'بافز', note:'Puff snack', noteAr:'سناك البافز', items:[
+    { img:F+'21.png', en:'Cheese Puffs',  ar:'بافز الجبنة' },
+    { img:F+'22.png', en:'Ketchup Puffs', ar:'بافز الكاتشب' }
   ]},
   { en:'Baz Juice', ar:'عصائر باز', note:'250 ml', noteAr:'٢٥٠ مل', items:[
     { img:J+'1.jpg', en:'Orange',      ar:'برتقال' },
     { img:J+'2.jpg', en:'Pomegranate', ar:'رمان' },
     { img:J+'3.jpg', en:'Grape',       ar:'عنب' },
-    { img:J+'4.jpg', en:'Peach',       ar:'خوخ' }
+    { img:J+'4.jpg', en:'Peach',       ar:'خوخ' },
+    { img:J+'5.jpg', en:'Mandarin (Lalanki)', ar:'لالنكي', chip:'New', chipAr:'جديد' },
+    { img:J+'6.jpg', en:'Lemon',       ar:'ليمون', chip:'New', chipAr:'جديد' }
   ]}
 ];
 
+const TP = 'assets/tobacco/packets/', TB = 'assets/tobacco/buckets/', V = 'assets/visions/web/';
 const tobaccoRanges = [
-  { en:'Molasses Tobacco', ar:'التبغ المعسل', note:'Premium hookah flavors', noteAr:'نكهات الأركيلة الفاخرة', items:[
+  { en:'Flavor Boxes', ar:'علب النكهات', note:'Premium hookah flavors', noteAr:'نكهات الأركيلة الفاخرة', items:[
     { img:T+'1.jpg',  en:'Two Apple',        ar:'تفاحتين' },
     { img:T+'2.jpg',  en:'Grape',            ar:'عنب' },
     { img:T+'3.jpg',  en:'Strawberry',       ar:'فراولة' },
@@ -77,12 +81,66 @@ const tobaccoRanges = [
     { img:T+'14.jpg', en:'Gum & Mint',       ar:'علكة ونعناع' },
     { img:T+'15.jpg', en:'Gum & Melon',      ar:'علكة وشمّام' },
     { img:T+'16.jpg', en:'Vanilla',          ar:'فانيلا' },
-    { img:T+'17.jpg', en:'Bon Bon',          ar:'بون بون' },
-    { img:T+'18.jpg', en:'Lady Killer',      ar:'ليدي كيلر' },
+    { img:T+'17.jpg', en:'Ice Cream',        ar:'آيس كريم' },
+    { img:T+'18.jpg', en:'Love 66',          ar:'لوف ٦٦' },
     { img:T+'19.jpg', en:'Dejavu',           ar:'ديجافو' },
     { img:T+'20.jpg', en:'Havana',           ar:'هافانا' },
     { img:T+'21.jpg', en:'Beethoven',        ar:'بيتهوفن' },
     { img:T+'22.jpg', en:'English',          ar:'إنجليزي' }
+  ]},
+  { en:'Molasses Packets', ar:'باكيت المعسل', note:'alBaz cartons', noteAr:'كراتين الباز', wide:true, items:[
+    { img:TP+'1.jpg',  en:'Two Apple',       ar:'تفاحتين' },
+    { img:TP+'2.jpg',  en:'Strawberry',      ar:'فراولة' },
+    { img:TP+'3.jpg',  en:'Fresh Orange',    ar:'برتقال منعش' },
+    { img:TP+'4.jpg',  en:'Fresh Lemon',     ar:'ليمون منعش' },
+    { img:TP+'5.jpg',  en:'Lemon & Mint',    ar:'ليمون ونعناع' },
+    { img:TP+'6.jpg',  en:'Gum & Mint',      ar:'علكة ونعناع' },
+    { img:TP+'7.jpg',  en:'Fresh Gum',       ar:'علكة منعشة' },
+    { img:TP+'8.jpg',  en:'Gum',             ar:'علكة' },
+    { img:TP+'9.jpg',  en:'Iced Gum',        ar:'علكة مثلجة' },
+    { img:TP+'10.jpg', en:'Ice Cream',       ar:'آيس كريم' },
+    { img:TP+'11.jpg', en:'Love 66',         ar:'لوف ٦٦' },
+    { img:TP+'12.jpg', en:'Havana',          ar:'هافانا' }
+  ]},
+  { en:'Hook Molasses', ar:'معسل هوك', note:'Hook cartons', noteAr:'كراتين هوك', wide:true, items:[
+    { img:TP+'13.jpg', en:'Two Apple',       ar:'تفاحتين' },
+    { img:TP+'14.jpg', en:'Lemon',           ar:'ليمون' },
+    { img:TP+'15.jpg', en:'Iced Mint',       ar:'نعناع مثلج' },
+    { img:TP+'16.jpg', en:'White Mint',      ar:'نعناع أبيض' },
+    { img:TP+'17.jpg', en:'Apple',           ar:'تفاح' },
+    { img:TP+'18.jpg', en:'French',          ar:'فرنسية' }
+  ]},
+  { en:'Molasses Buckets', ar:'سطل المعسل', note:'Bulk tubs', noteAr:'عبوات كبيرة', items:[
+    { img:TB+'1.jpg',  en:'Two Apple',       ar:'تفاحتين' },
+    { img:TB+'2.jpg',  en:'Fresh Citrus',    ar:'حمضيات منعشة' },
+    { img:TB+'3.jpg',  en:'Fresh Orange',    ar:'برتقال منعش' },
+    { img:TB+'4.jpg',  en:'Fresh Lemon',     ar:'ليمون منعش' },
+    { img:TB+'5.jpg',  en:'Red Lemon & Mint', ar:'ليمون ونعناع أحمر' },
+    { img:TB+'6.jpg',  en:'Gum',             ar:'علكة' },
+    { img:TB+'7.jpg',  en:'Fresh Gum',       ar:'علكة منعشة' },
+    { img:TB+'8.jpg',  en:'Iced Gum',        ar:'علكة مثلجة' },
+    { img:TB+'9.jpg',  en:'Gum & Mint',      ar:'علكة ونعناع' },
+    { img:TB+'10.jpg', en:'Melon & Gum',     ar:'شمّام وعلكة' },
+    { img:TB+'11.jpg', en:'Vanilla',         ar:'فانيلا' },
+    { img:TB+'12.jpg', en:'Beethoven',       ar:'بيتهوفن' },
+    { img:TB+'13.jpg', en:'Dejavu',          ar:'ديجافو' },
+    { img:TB+'14.jpg', en:'Love',            ar:'لوف' },
+    { img:TB+'15.jpg', en:'Lady Care',       ar:'ليدي كير' },
+    { img:TB+'16.jpg', en:'English',         ar:'إنجليزي' }
+  ]}
+];
+
+const visionsRanges = [
+  { en:'Hookah Accessories', ar:'مستلزمات الأركيلة', note:'Foil · charcoal · bowls · hoses', noteAr:'سلفان · فحم · رؤوس · قماجي', items:[
+    { img:V+'1.jpg', en:'alBaz Aluminium Foil',     ar:'سلفان الباز' },
+    { img:V+'2.jpg', en:'Hook Aluminium Foil',      ar:'سلفان هوك' },
+    { img:V+'3.jpg', en:'alBaz Charcoal',           ar:'فحم الباز' },
+    { img:V+'4.jpg', en:'Clay Bowl — Phunnel',      ar:'رأس أركيلة فخاري' },
+    { img:V+'5.jpg', en:'Clay Bowl — Classic',      ar:'رأس أركيلة فخاري كلاسيك' },
+    { img:V+'6.jpg', en:'Disposable Hookah Hose',   ar:'قمجي أركيلة' },
+    { img:V+'7.jpg', en:'Charcoal Heating Basket',  ar:'سلة تسخين الفحم' },
+    { img:V+'8.jpg', en:'Charcoal Basket with Handle', ar:'مقلاة الفحم' },
+    { img:V+'9.jpg', en:'alBaz Molasses Carton',    ar:'كرتون معسل الباز' }
   ]}
 ];
 
@@ -91,13 +149,15 @@ const catalog = [
   { company:'Al-Baz Foods',   companyAr:'شركة باز للأطعمة الجاهزة', logo:'foods',
     tag:'Chips · Snacks · Juices', tagAr:'شبس · وجبات خفيفة · عصائر', groups:ranges },
   { company:'Al-Baz Tobacco', companyAr:'شركة الباز للتبوغ المعسلة', logo:'tobacco',
-    tag:'Premium hookah molasses', tagAr:'تبغ الأركيلة المعسل الفاخر', groups:tobaccoRanges }
+    tag:'Premium hookah molasses', tagAr:'تبغ الأركيلة المعسل الفاخر', groups:tobaccoRanges },
+  { company:'Modern Visions', companyAr:'الرؤى الحديثة', logo:'visions',
+    tag:'Hookahs & Supplies', tagAr:'الأراكيل ومستلزماتها', groups:visionsRanges }
 ];
 
 function prodCard(p, click){
   const chip = p.chip ? `<span class="chip" data-ar="${p.chipAr||p.chip}">${p.chip}</span>` : '';
   const attrs = click ? ` role="button" tabindex="0" onclick="${click}" onkeypress="if(event.key==='Enter'||event.key===' '){${click};event.preventDefault()}"` : '';
-  return `<div class="prod"${attrs}>
+  return `<div class="prod${p.wide ? ' wide' : ''}"${attrs}>
     <div class="shot"><img src="${p.img}" alt="${p.en}" loading="lazy"></div>
     <div class="prod-body">
       <div class="prod-name" data-ar="${p.ar}">${p.en}</div>
@@ -112,7 +172,8 @@ function shotTile(src, alt, click){
 }
 
 /* restaurant / venue photos for companies that show a photo gallery */
-const beethovenPhotos = [1,2,3,4,5,6,7,8,9].map(n => 'assets/beethoven/' + n + '.jpeg');
+const beethovenPhotos = [1,2,3,4,5,6,7,8,9].map(n => 'assets/beethoven/' + n + '.jpeg');   // Karrada (main)
+const beethoven2Photos = [1,2,3,4,5,6,7].map(n => 'assets/beethoven2/' + n + '.jpg');       // Mansour (new)
 
 function renderProducts(){
   // home auto-scrolling marquee (duplicated for a seamless loop)
@@ -120,6 +181,7 @@ function renderProducts(){
   if (track){
     const tiles = allProducts.map((p, i) => prodCard(p, `openGalleryAt(${i})`)).join('');
     track.innerHTML = tiles + tiles;
+    track.style.animationDuration = Math.round(allProducts.length * 3.2) + 's';  // constant pace however many products
   }
   // each product company: one big feature image + a full product gallery below
   catalog.forEach(c => {
@@ -127,14 +189,31 @@ function renderProducts(){
     const shots = document.getElementById('shots-' + c.logo);
     if (shots) shots.innerHTML = shotTile(list[0].img, list[0].en, `openGalleryKey('${c.logo}',0)`);
     const gal = document.getElementById('gallery-' + c.logo);
-    if (gal) gal.innerHTML = list.map((p, i) => prodCard(p, `openGalleryKey('${c.logo}',${i})`)).join('');
+    if (!gal) return;
+    // one sub-heading + grid per range; index keeps counting across ranges for the lightbox
+    let idx = 0;
+    gal.innerHTML = c.groups.map(g => {
+      const head = c.groups.length > 1 ? `<div class="range-head">
+          <h3 data-ar="${g.ar}">${g.en}</h3>
+          ${g.note ? `<span class="r-note" data-ar="${g.noteAr||g.note}">${g.note}</span>` : ''}
+          <span class="r-count">${g.items.length}</span>
+        </div>` : '';
+      const cards = g.items.map(p => prodCard(Object.assign({ wide: !!g.wide }, p), `openGalleryKey('${c.logo}',${idx++})`)).join('');
+      return `<div class="range">${head}<div class="prod-grid${g.wide ? ' wide' : ''}">${cards}</div></div>`;
+    }).join('');
   });
-  // Beethoven — restaurant photos
-  const bShots = document.getElementById('shots-beethoven');
-  if (bShots) bShots.innerHTML = shotTile(beethovenPhotos[0], 'Beethoven', "openPhotos(beethovenPhotos,'Beethoven Restaurant & Café','مطعم وكافيه بيتهوفن',0)");
-  const bGal = document.getElementById('gallery-beethoven');
-  if (bGal) bGal.innerHTML = beethovenPhotos
-    .map((s, i) => `<div class="prod photo" role="button" tabindex="0" onclick="openPhotos(beethovenPhotos,'Beethoven Restaurant &amp; Café','مطعم وكافيه بيتهوفن',${i})"><div class="shot"><img src="${s}" alt="Beethoven" loading="lazy"></div></div>`).join('');
+  // Beethoven — one photo set per branch
+  photoSection('beethoven',  beethovenPhotos,  'Beethoven — Karrada', 'بيتهوفن — الكرادة');
+  photoSection('beethoven2', beethoven2Photos, 'Beethoven — Mansour', 'بيتهوفن — المنصور');
+}
+
+function photoSection(key, photos, title, titleAr){
+  const open = i => `openPhotos(${key}Photos,'${title}','${titleAr}',${i})`;
+  const shots = document.getElementById('shots-' + key);
+  if (shots) shots.innerHTML = shotTile(photos[0], title, open(0));
+  const gal = document.getElementById('gallery-' + key);
+  if (gal) gal.innerHTML = photos.map((s, i) =>
+    `<div class="prod photo" role="button" tabindex="0" onclick="${open(i)}"><div class="shot"><img src="${s}" alt="${title}" loading="lazy"></div></div>`).join('');
 }
 
 /* ============================================================
@@ -211,7 +290,7 @@ function lbPlayBtn(){
 const allProducts = [];
 catalog.forEach(c => c.groups.forEach(g => g.items.forEach(it =>
   allProducts.push(Object.assign({}, it, {
-    key: c.logo, company: c.company, companyAr: c.companyAr, range: g.en, rangeAr: g.ar
+    key: c.logo, company: c.company, companyAr: c.companyAr, range: g.en, rangeAr: g.ar, wide: !!g.wide
   }))
 )));
 
